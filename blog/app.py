@@ -1,10 +1,15 @@
-from flask import Flask, request
+from time import time
+from flask import Flask, request, g
+from blog.paper.views import paper
+from blog.user.views import user
 
-app = Flask(__name__)
+
+def create_app() -> Flask:
+    app = Flask(__name__)
+    register_blueprints(app)
+    return app
 
 
-@app.route('/status/', methods=["GET", "POST"])
-def custom_status_code():
-    if request.method == "GET":
-        return "Response GET method"
-    return "Response POST method"
+def register_blueprints(app: Flask):
+    app.register_blueprint(user)
+    app.register_blueprint(paper)
