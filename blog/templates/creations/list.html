@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Paper list
+Creation list
 {% endblock %}
 
 {% block body %}
 <div class="row">
     <div class="col">
-        <h1>papers:</h1>
-            {% for key, value in paper.items() %}
+        <h1>Creations:</h1>
+            {% for key, value in creation.items() %}
         <ul>
-            <li><a href="{{ url_for('paper.get_paper', pk=key) }}">{{ value['title'] }}</a>
+            <li><a href="{{ url_for('creation.get_creation', pk=key) }}">{{ value['title'] }}</a>
                 <a href="{{ url_for('user.get_user', pk=value['author']) }}">Author</a>
             </li>
         </ul>

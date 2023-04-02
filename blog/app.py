@@ -1,5 +1,5 @@
 from flask import Flask
-from blog.paper.views import paper
+from blog.creation.views import creation
 from blog.user.views import user
 
 
@@ -11,4 +11,4 @@ def create_app() -> Flask:
 
 def register_blueprints(app: Flask):
     app.register_blueprint(user)
-    app.register_blueprint(paper)
+    app.register_blueprint(creation)

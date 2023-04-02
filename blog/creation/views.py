@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template
 from werkzeug.exceptions import NotFound
 
-paper = Blueprint('paper', __name__, url_prefix='/papers', static_folder='../static')
+creation = Blueprint('creation', __name__, url_prefix='/creation', static_folder='../static')
 
-PAPERS = {
+CREATIONS = {
     1: {
         'title': 'Ruslan and Ludmila',
         'text': '1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis urna eu malesuada commodo. Suspendisse lacinia, velit vitae mattis ',
@@ -22,18 +22,18 @@ PAPERS = {
 }
 
 
-@paper.route('/')
-def paper_list():
-    return render_template('papers/list.html', paper=PAPERS)
+@creation.route('/')
+def creation_list():
+    return render_template('creations/list.html', creation=CREATIONS)
 
 
-@paper.route('/<int:pk>')
-def get_paper(pk: int):
+@creation.route('/<int:pk>')
+def get_creation(pk: int):
     try:
-        paper_name = PAPERS[pk]
+        creation_name = CREATIONS[pk]
     except KeyError:
-        raise NotFound(f'Paper id {pk} not found')
+        raise NotFound(f'Creation id {pk} not found')
     return render_template(
-        'papers/details.html',
-        paper_name=paper_name,
+        'creations/details.html',
+        creation_name=creation_name,
     )

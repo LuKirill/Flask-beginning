@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Creation detail
+{% endblock %}
+
+{% block body %}
+    <h1>{{ creation_name['title'] }}</h1>
+    <h3>{{ creation_name['text'] }}</h3>
+    <h3><a href="{{ url_for('user.get_user', pk=creation_name['author']) }}">Author</a></h3>
+{% endblock %}
