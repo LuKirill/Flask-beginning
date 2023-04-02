@@ -1,5 +1,4 @@
-from time import time
-from flask import Flask, request, g
+from flask import Flask
 from blog.paper.views import paper
 from blog.user.views import user
 

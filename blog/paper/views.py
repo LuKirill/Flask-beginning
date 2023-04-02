@@ -35,5 +35,5 @@ def get_paper(pk: int):
         raise NotFound(f'Paper id {pk} not found')
     return render_template(
         'papers/details.html',
-        apaper_name=paper_name,
+        paper_name=paper_name,
     )
