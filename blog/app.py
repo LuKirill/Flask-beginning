@@ -6,12 +6,14 @@ from blog.creation.views import creation
 from blog.user.views import user
 from blog.auth.views import auth
 
+db = SQLAlchemy()
+
 
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config['SECRET_KEY'] = ')c46i=c^-in+6v4^%cw$m11m5ubaz(3vob1ffcdysa5+t@+tdj'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite"
 
     db.init_app(app)
 
