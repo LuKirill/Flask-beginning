@@ -5,6 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from blog.creation.views import creation
 from blog.user.views import user
 from blog.auth.views import auth
+from blog.models.database import db
+
 
 db = SQLAlchemy()
 
@@ -17,21 +19,20 @@ def create_app() -> Flask:
 
     db.init_app(app)
 
-    login_manager.login_view = 'auth.login'
-    login_manager.init_app(app)
+    # login_manager.login_view = 'auth.login'
+    # login_manager.init_app(app)
 
-    from blog.models import User
+    # from blog.models import User
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        User.query.get(int(user_id))
+    # @login_manager.user_loader
+    # def load_user(user_id):
+    #     User.query.get(int(user_id))
 
-    register_blueprints(app)
-    return app
+    # register_blueprints(app)
+    # return app
 
 
 def register_blueprints(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(creation)
     app.register_blueprint(auth)
-
