@@ -6,9 +6,7 @@ from blog.creation.views import creation
 from blog.user.views import user
 from blog.auth.views import auth
 from blog.models.database import db
-
-
-db = SQLAlchemy()
+from blog import commands
 
 
 def create_app() -> Flask:
@@ -27,12 +25,16 @@ def create_app() -> Flask:
     # @login_manager.user_loader
     # def load_user(user_id):
     #     User.query.get(int(user_id))
-
-    # register_blueprints(app)
-    # return app
+    register_commands(app)
+    register_blueprints(app)
+    return app
 
 
 def register_blueprints(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(creation)
     app.register_blueprint(auth)
+
+def register_commands(app):
+    app.cli.add_command(commands.init_db)
+    app.cli.add_command(commands.create_users)
