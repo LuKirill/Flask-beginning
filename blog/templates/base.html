@@ -8,13 +8,13 @@
         {% block title %}{% endblock %}
     </title>
     {% block css %}
-    <link href="{{https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css}}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
 {% include "navbar.html"%}
 <div class="container">
-    {% block body %}{% endblock %}
+    {% block body %}Hello base!{% endblock %}
 </div>
     {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
