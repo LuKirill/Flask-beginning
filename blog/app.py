@@ -1,12 +1,15 @@
 from flask import Flask, redirect, url_for
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 from blog.creation.views import creation
 from blog.user.views import user
 from blog.auth.views import auth
 from blog.models.database import db
 from blog import commands
+
+import os
 
 
 def create_app() -> Flask:
@@ -16,6 +19,10 @@ def create_app() -> Flask:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite"
 
     db.init_app(app)
+    Migrate(app, db)
+
+    cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
+    app.config.from_object(f"blog.configs.{cfg_name}")
 
     # login_manager.login_view = 'auth.login'
     # login_manager.init_app(app)
