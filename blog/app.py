@@ -11,6 +11,8 @@ from blog import commands
 
 import os
 
+db = SQLAlchemy()
+login_manager = LoginManager()
 
 def create_app() -> Flask:
     app = Flask(__name__)
@@ -24,14 +26,14 @@ def create_app() -> Flask:
     cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
     app.config.from_object(f"blog.configs.{cfg_name}")
 
-    # login_manager.login_view = 'auth.login'
-    # login_manager.init_app(app)
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
 
-    # from blog.models import User
+    from blog.models import User
 
-    # @login_manager.user_loader
-    # def load_user(user_id):
-    #     User.query.get(int(user_id))
+    @login_manager.user_loader
+    def load_user(user_id):
+        User.query.get(int(user_id))
     register_commands(app)
     register_blueprints(app)
     return app
