@@ -1,44 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators, PasswordField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, validators
 
 
-class UserBaseForm(FlaskForm):
-    first_name = StringField("First Name")
-    last_name = StringField("Last Name")
-    username = StringField(
-        "username",
+class CreateArticleForm(FlaskForm):
+    title = StringField(
+        "Title",
         [validators.DataRequired()],
     )
-    email = StringField(
-        "Email Address",
-        [
-            validators.DataRequired(),
-            validators.Email(),
-            validators.Length(min=6, max=200),
-        ],
-        filters=[lambda data: data and data.lower()],
-    )
-
-
-class RegistrationForm(UserBaseForm):
-    password = PasswordField(
-        "New Password",
-        [
-            validators.DataRequired(),
-            validators.EqualTo("confirm", message="Passwords must match"),
-        ],
-    )
-    confirm = PasswordField("Repeat Password")
-    submit = SubmitField("Register")
-
-
-class LoginForm(FlaskForm):
-    username = StringField(
-        "username",
+    body = TextAreaField(
+        "Body",
         [validators.DataRequired()],
     )
-    password = PasswordField(
-        "Password",
-        [validators.DataRequired()],
-    )
-    submit = SubmitField("Login")
+    submit = SubmitField("Publish")

@@ -8,6 +8,7 @@ from blog.user.views import user
 from blog.auth.views import auth
 from blog.models.database import db
 from blog import commands
+from blog.views.authors import authors_app
 
 import os
 
@@ -43,6 +44,7 @@ def register_blueprints(app: Flask):
     app.register_blueprint(user)
     app.register_blueprint(creation)
     app.register_blueprint(auth)
+    app.register_blueprint(authors_app, url_prefix="/authors")
 
 def register_commands(app):
     app.cli.add_command(commands.init_db)
