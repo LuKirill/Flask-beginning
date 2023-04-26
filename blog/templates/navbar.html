@@ -12,8 +12,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('creation.creation_list') }}">Creations</a>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url_for('article.article_list') }}">Articles</a>
         </li>
-      </form>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('auth.logout') }}">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

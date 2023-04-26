@@ -11,7 +11,7 @@ Creation list
             {% for key, value in creation.items() %}
         <ul>
             <li><a href="{{ url_for('creation.get_creation', pk=key) }}">{{ value['title'] }}</a>
-                <a href="{{ url_for('user.get_user', pk=value['author']) }}">Author</a>
+                <a href="{{ url_for('user.profile', pk=value['author']) }}">Author</a>
             </li>
         </ul>
         {% endfor %}
