@@ -1,4 +1,5 @@
 from blog.app import create_app
+from werkzeug.security import generate_password_hash
 
 app = create_app()
 
