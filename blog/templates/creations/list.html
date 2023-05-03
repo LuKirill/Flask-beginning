@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Creation list
+    Authors list
 {% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="col">
-        <h1>Creations:</h1>
-            {% for key, value in creation.items() %}
-        <ul>
-            <li><a href="{{ url_for('creation.get_creation', pk=key) }}">{{ value['title'] }}</a>
-                <a href="{{ url_for('user.get_user', pk=value['author']) }}">Author</a>
-            </li>
-        </ul>
-        {% endfor %}
+    <div class="row">
+        <h1>Authors:</h1>
     </div>
-</div>
+    <div class="row">
+        <div class="col">
+            {% for author in authors %}
+                <ul>
+                    <li>
+                        <a href="{{ url_for('user.profile', pk=author.user.id) }}">
+                            {{ author.user.first_name }} {{ author.user.last_name }} ({{ author.id }})
+                        </a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
