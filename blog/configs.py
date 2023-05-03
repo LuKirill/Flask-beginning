@@ -19,6 +19,12 @@ WTF_CSRF_ENABLED = True
 FLASK_ADMIN_SWATCH = 'pulse'
 
 
+OPENAPI_URL_PREFIX = '/api/docs'
+OPENAPI_VERSION = '3.0.0'
+OPENAPI_SWAGGER_UI_PATH = '/'
+OPENAPI_SWAGGER_UI_VERSION = '3.51.1'
+
+
 class BaseConfig(object):
     DEBUG = False
     TESTING = False
