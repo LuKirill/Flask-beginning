@@ -1,7 +1,7 @@
 from flask import Flask
 
 from blog import commands
-from blog.extensions import db, login_manager, migrate, csrf
+from blog.extensions import db, login_manager, migrate, csrf, admin
 from blog.models import User
 
 
@@ -40,6 +40,13 @@ def register_blueprints(app: Flask):
     app.register_blueprint(auth)
     app.register_blueprint(author)
     app.register_blueprint(article)
+
+    admin.register_views()
+
+
+def register_commands(app: Flask):
+    app.cli.add_command(commands.create_init_user)
+    app.cli.add_command(commands.create_init_tags)
 
 
 def register_commands(app: Flask):
